@@ -3,10 +3,8 @@ services:
     name: playwright-mcp
     runtime: node
     plan: starter
-    buildCommand: npm install && npx playwright install chromium
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
-      - key: PORT
-        value: 8931
       - key: PLAYWRIGHT_BROWSERS_PATH
         value: /opt/render/project/.browsers
