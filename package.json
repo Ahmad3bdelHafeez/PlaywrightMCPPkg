@@ -2,7 +2,7 @@
   "name": "playwright-mcp-server",
   "version": "1.0.0",
   "scripts": {
-    "start": "npx @playwright/mcp@latest --port $PORT --host 0.0.0.0 --config playwright-mcp-config.json",
+    "start": "npx @playwright/mcp@latest --port 10000 --host 0.0.0.0 --config playwright-mcp-config.json",
     "build": "npx playwright install chromium"
   },
   "dependencies": {
