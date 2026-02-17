@@ -6,9 +6,10 @@ COPY package*.json ./
 RUN npm install
 
 COPY playwright-mcp-config.json ./
-COPY start.sh ./
-RUN chmod +x start.sh
 
 EXPOSE 10000
 
-CMD ["./start.sh"]
+CMD ["npx", "@playwright/mcp@latest", \
+     "--port", "10000", \
+     "--allowed-origins", "*", \
+     "--config", "playwright-mcp-config.json"]
