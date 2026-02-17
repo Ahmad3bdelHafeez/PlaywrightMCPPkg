@@ -1,10 +1,12 @@
-FROM mcr.microsoft.com/playwright:v1.50.0-jammy
+FROM mcr.microsoft.com/playwright:v1.41.2-jammy
 
 WORKDIR /app
 
-# Install the MCP server
-RUN npm init -y && npm install @playwright/mcp@latest
+COPY package*.json ./
+RUN npm install
 
-EXPOSE 8080
+COPY . .
 
-CMD ["npx", "@playwright/mcp@latest", "--port", "8080", "--host", "0.0.0.0"]
+EXPOSE 3000
+
+CMD ["node", "server.js"]
