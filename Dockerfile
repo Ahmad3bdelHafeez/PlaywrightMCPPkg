@@ -5,8 +5,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-COPY . .
+COPY playwright-mcp-config.json ./
 
-EXPOSE 8931
+EXPOSE 10000
 
-CMD ["npm", "start"]
+CMD ["npx", "@playwright/mcp@latest", \
+     "--port", "10000", \
+     "--host", "0.0.0.0", \
+     "--allowed-origins", "*", \
+     "--config", "playwright-mcp-config.json"]
