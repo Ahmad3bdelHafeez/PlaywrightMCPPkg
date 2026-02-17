@@ -40,12 +40,9 @@ EXPOSE 8931
 #      "--headless", \
 #      "--isolated"]
 
-CMD ["playwright-mcp", \
-     "--port", "8931", \
-     "--host", "0.0.0.0", \
-     "--allowed-hosts", "*", \
-     "--browser", "chromium", \
-     "--executable-path", "/usr/bin/chromium", \
-     "--no-sandbox", \
-     "--headless", \
-     "--args", "--disable-blink-features=AutomationControlled"]
+RUN apt-get install -y xvfb
+
+CMD Xvfb :99 -screen 0 1280x720x24 & \
+    DISPLAY=:99 playwright-mcp --port 8931 --host 0.0.0.0 \
+    --allowed-hosts "*" --browser chromium \
+    --executable-path /usr/bin/chromium --no-sandbox
