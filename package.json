@@ -1,13 +1,10 @@
 {
   "name": "playwright-mcp-server",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "build": "npx playwright install chromium"
+    "start": "npx @playwright/mcp@latest --port $PORT --host 0.0.0.0 -- --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-gpu --single-process --no-zygote"
   },
   "dependencies": {
-    "@playwright/mcp": "latest",
-    "playwright": "latest"
+    "@playwright/mcp": "latest"
   }
 }
