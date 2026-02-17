@@ -34,4 +34,7 @@ ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 EXPOSE 8931
 
-CMD ["playwright-mcp", "--port", "8931", "--host", "0.0.0.0", "--browser", "chromium", "--executable-path", "/usr/bin/chromium"]
+CMD ["playwright-mcp", "--port", "8931", "--host", "0.0.0.0", \
+     "--allowed-origins", "*", \
+     "--browser", "chromium", "--executable-path", "/usr/bin/chromium", \
+     "--chromium-sandbox=false"]
