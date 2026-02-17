@@ -1,6 +1,5 @@
 FROM node:20-slim
 
-# Install Playwright system dependencies
 RUN apt-get update && apt-get install -y \
     chromium \
     fonts-liberation \
@@ -24,17 +23,18 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /app
 
-# Install @playwright/mcp
-RUN npm install -g @playwright/mcp
+RUN npm install -g @playwright/mcp@latest
 
-# Tell Playwright to use the system Chromium
 ENV PLAYWRIGHT_BROWSERS_PATH=0
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
+# This tells Chromium to run without sandbox (required in Docker)
+ENV CHROMIUM_FLAGS="--no-sandbox --disable-setuid-sandbox"
 
 EXPOSE 8931
 
 CMD ["playwright-mcp", "--port", "8931", "--host", "0.0.0.0", \
-     "--allowed-origins", "*", \
-     "--browser", "chromium", "--executable-path", "/usr/bin/chromium", \
-     "--chromium-sandbox=false"]
+     "--browser", "chromium", \
+     "--executable-path", "/usr/bin/chromium"]
