@@ -1,10 +1,12 @@
 {
   "name": "playwright-mcp-server",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "start": "npx @playwright/mcp@latest --port $PORT --host 0.0.0.0"
+    "start": "node server.js"
   },
   "dependencies": {
-    "@playwright/mcp": "latest"
+    "@playwright/mcp": "latest",
+    "playwright": "latest"
   }
 }
