@@ -1,15 +1,10 @@
-FROM mcr.microsoft.com/playwright:v1.50.0-jammy
+FROM mcr.microsoft.com/playwright/mcp:latest
 
-WORKDIR /app
+EXPOSE 8931
 
-COPY package*.json ./
-RUN npm install
-
-COPY playwright-mcp-config.json ./
-
-EXPOSE 10000
-
-CMD ["npx", "@playwright/mcp@latest", \
-     "--port", "10000", \
-     "--allowed-origins", "*", \
-     "--config", "playwright-mcp-config.json"]
+ENTRYPOINT ["node", "cli.js", \
+  "--headless", \
+  "--browser", "chromium", \
+  "--no-sandbox", \
+  "--host", "0.0.0.0", \
+  "--port", "8931"]
