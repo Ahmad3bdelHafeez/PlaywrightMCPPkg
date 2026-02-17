@@ -4,6 +4,3 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     plan: standard  # needs at least 512MB RAM; Standard recommended
-    envVars:
-      - key: PORT
-        value: "8931"
