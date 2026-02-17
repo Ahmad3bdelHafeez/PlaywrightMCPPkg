@@ -2,5 +2,8 @@ services:
   - type: web
     name: playwright-mcp
     runtime: docker
-    dockerfilePath: ./Dockerfile
-    plan: standard  # needs at least 512MB RAM; Standard recommended
+    plan: standard  # needs at least 1GB RAM
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
